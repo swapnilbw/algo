@@ -1,5 +1,8 @@
 package com.java.algo.arrays;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Fibonacci {
 
     public static void main(String[] args) {
@@ -34,4 +37,24 @@ public class Fibonacci {
             prev = curr;
             curr = curr + tmp;
         }
-    }}
+    }
+    // using dyanamic programming
+    private static int findFinDyana(int i) {
+
+        if(i < 3) return 1;
+
+        Map<Integer,Integer> aMap = new HashMap<>();
+        int value1=0,value2=0;
+        if(aMap.get(i-2)!=null){
+            value1 = aMap.get(i-2);
+        }else{
+            value1 = findFinDyana(i-2);
+        }
+        if(aMap.get(i-1)!=null){
+            value2 = aMap.get(i-1);
+        }else{
+            value2 = findFinDyana(i-1);
+        }
+        return value1 + value2;
+    }
+}

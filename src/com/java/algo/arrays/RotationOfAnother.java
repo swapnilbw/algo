@@ -8,6 +8,8 @@ public class RotationOfAnother {
     }
 
     private static boolean isRotation(int [] A ,int [] B) {
+        // check length
+        if(A.length != B.length) return false;
         // check if A first element exists in B
         int A1=  A[0];
         boolean found = true;

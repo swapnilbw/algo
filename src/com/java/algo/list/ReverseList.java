@@ -1,40 +1,28 @@
 package com.java.algo.list;
 
-import java.lang.annotation.ElementType;
-
 public class ReverseList {
 
     public static void main(String[] args) {
-        ReverseList obj = new ReverseList();
-        EList L = EList.createTestList();
-        //Node NH = obj.reverseList(L.H);
-        Node NH = obj.reverseListRecursion(L.H);
+        EList E = new EList();
+        Node H = E.createTestList();
+        System.out.println("Before ");
+        EList.printList(H);
+        Node NH  =reverseList(H);
+        System.out.println("After");
         EList.printList(NH);
     }
 
-    private Node reverseList(Node H) {
-
-        Node C = H;
-        Node prev = null;
-        while(C != null){
+    private static Node reverseList(Node h) {
+        Node P = null;
+        Node C = h;
+        while(C != null) {
             Node tmp = C.next;
-            C.next = prev;
-            prev = C;
+            C.next = P;
+            P = C;
             C = tmp;
         }
-        return prev;
+        return P;
     }
 
-    private Node reverseListRecursion(Node H){
 
-        // return condition
-        if( H ==null || H.next == null)
-            return H;
-
-        Node newNode = reverseListRecursion(H.next);
-
-        H.next.next=H;
-        H.next = null;
-        return newNode;
-    }
 }

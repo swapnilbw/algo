@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class FindTheSuccessor {
-
-
-    static class BinarySearchTree {
+public class BinarySearchTree {
 
         Node root;
 
@@ -121,38 +118,3 @@ public class FindTheSuccessor {
             return null;
         }
     }
-
-    /***********************************************
-     * Driver program to test findInOrderSuccessor *
-     ***********************************************/
-
-    public static void main(String[] args) {
-
-        Node test = null, succ = null;
-
-        // Create a Binary Search Tree
-        BinarySearchTree tree = new BinarySearchTree();
-        tree.insert(20);
-        tree.insert(9);
-        tree.insert(25);
-        tree.insert(5);
-        tree.insert(12);
-        tree.insert(11);
-        tree.insert(14);
-
-        // Get a reference to the node whose key is 9
-        test = tree.getNodeByKey(14);
-
-        // Find the in order successor of test
-        //succ = tree.findInOrderSuccessor(test);
-        succ = tree.findInOrderSuccessorFaster(test);
-
-        // Print the key of the successor node
-        if (succ != null) {
-            System.out.println("Inorder successor of " + test.key +
-                    " is " + succ.key);
-        } else {
-            System.out.println("Inorder successor does not exist");
-        }
-    }
-}

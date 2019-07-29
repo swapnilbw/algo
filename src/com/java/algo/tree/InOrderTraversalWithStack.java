@@ -1,11 +1,11 @@
 package com.java.algo.tree;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
 
 public class InOrderTraversalWithStack {
 
-        private static Deque<Node> stack = new LinkedList<>();
 
         public static void main(String[] args) {
 
@@ -33,27 +33,22 @@ public class InOrderTraversalWithStack {
     }
 
     private static void inOrderUsingStack(Node root){
+        Deque<Node> stack = new ArrayDeque<>();
 
-            //stack.addFirst(root);
-            do{
+            while(!stack.isEmpty() || root!=null){
                   //left first
-                if(root!=null && root.left!=null){
-                    while(root!=null){
-                        stack.addFirst(root);
-                        root = root.left;
-                    }
+                if(root!=null){
+                    stack.addFirst(root);
+                    root = root.left;
                 }else{
-                    Node inOrderElement =null;
-                    while(!stack.isEmpty() ){
-                        inOrderElement = stack.removeFirst();
-                        //process element
-                        System.out.println(inOrderElement.key);
-                        if(inOrderElement.right!=null) break;
+                    // go up
+                    Node inOrderElement =stack.removeFirst();
+                    System.out.println(inOrderElement.key);
+                    // go right
+                    if(inOrderElement.right!=null ){
+                        root = inOrderElement.right;
                     }
-                    // set new root
-                    root = inOrderElement.right;
-
                 }
-            }while(!stack.isEmpty());
+            }
     }
 }

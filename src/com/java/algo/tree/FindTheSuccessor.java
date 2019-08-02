@@ -1,5 +1,6 @@
 package com.java.algo.tree;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,16 +24,10 @@ public class FindTheSuccessor {
                 }
                 return succ;
             } else { // check parent nodes
-                Node parentNode = inputNode.parent;
-                while (parentNode != null) {
-                    Node grandParent = parentNode.parent;
-                    if (grandParent != null && grandParent.left.key == parentNode.key) {
-                        succ = grandParent;
-                        break;
-
-                    }
-                    parentNode = parentNode.parent;
+                while (inputNode.parent != null && inputNode!=inputNode.parent.left) {
+                    inputNode = inputNode.parent;
                 }
+                succ = inputNode.parent;
             }
             return succ;
         }
@@ -139,6 +134,9 @@ public class FindTheSuccessor {
         tree.insert(12);
         tree.insert(11);
         tree.insert(14);
+        System.out.print("InOrder traversal : ");
+        printInOrderTraversal(tree.getNodeByKey(20));
+        System.out.println("");
 
         // Get a reference to the node whose key is 9
         test = tree.getNodeByKey(14);
@@ -154,5 +152,12 @@ public class FindTheSuccessor {
         } else {
             System.out.println("Inorder successor does not exist");
         }
+    }
+
+    private static void printInOrderTraversal(Node root) {
+        if(root==null) return;
+        printInOrderTraversal(root.left);
+        System.out.print(" "+root.key);
+        printInOrderTraversal(root.right);
     }
 }

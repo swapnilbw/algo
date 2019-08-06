@@ -23,6 +23,4 @@ public class ReverseList {
         }
         return P;
     }
-
-
 }

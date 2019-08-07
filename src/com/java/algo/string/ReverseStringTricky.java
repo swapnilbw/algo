@@ -9,6 +9,7 @@ public class ReverseStringTricky {
         String reversedString = reverseString("alice likes bob");
         System.out.println(reversedString);
         System.out.println("bob likes alice".equals(reversedString));
+        System.out.println(reverseUsingRecursion("alice"));
     }
 
     private static String reverseString(String S) {
@@ -42,5 +43,9 @@ public class ReverseStringTricky {
             A[end] = tmp;
             start ++; end --;
         }
+    }
+    private static String reverseUsingRecursion(String S){ //abc
+        if(S.length()==0) return "";
+        return S.charAt(S.length()-1) + reverseUsingRecursion(S.substring(0,S.length()-1));
     }
 }

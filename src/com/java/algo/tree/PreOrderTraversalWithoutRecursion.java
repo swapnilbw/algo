@@ -3,7 +3,7 @@ package com.java.algo.tree;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class PreOrderTraversalUsingQueue {
+public class PreOrderTraversalWithoutRecursion {
     public static void main(String[] args) {
 
         Node test = null, succ = null;
@@ -20,29 +20,30 @@ public class PreOrderTraversalUsingQueue {
 
         preOrdertraversalWithRecursion(tree.root);
         System.out.println();
-        preOrderUsingQueue(tree.root);
+        preOrderUsingStack(tree.root);
     }
 
-    private static void preOrderUsingQueue(Node root) {
-        Deque<Node> Q = new ArrayDeque<>();
-        Q.addFirst(root);
-        while(!Q.isEmpty()){
-            //process
-            Node preOrderElemenet = Q.removeFirst();
-            System.out.print(" "+preOrderElemenet.key);
-            // add right and left
-            if(preOrderElemenet.right!=null)
-                Q.addFirst(preOrderElemenet.right);
-            if(preOrderElemenet.left!=null){
-                Q.addFirst(preOrderElemenet.left);
+    private static void preOrderUsingStack(Node root) {
+        Deque<Node> S = new ArrayDeque<>();
+        S.addFirst(root);
+        while (!S.isEmpty()) {
+            // process root
+            Node E = S.removeFirst();
+            System.out.print(" "+E.key);
+            // add right to stack first and then left
+            if (null != E.right) {
+                S.addFirst(E.right);
+            }
+            if (null != E.left) {
+                S.addFirst(E.left);
             }
         }
     }
 
     private static void preOrdertraversalWithRecursion(Node root) {
-        if(root==null) return;
+        if (root == null) return;
         //process root
-        System.out.print(" "+root.key);
+        System.out.print(" " + root.key);
         preOrdertraversalWithRecursion(root.left);
         preOrdertraversalWithRecursion(root.right);
     }

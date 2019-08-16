@@ -25,23 +25,17 @@ public class PostOrderWithoutRecursion {
 
     private static void postOrderUsingStack(Node root) {
         Deque<Node> S = new ArrayDeque<>();
-        Deque<Node> Q = new ArrayDeque<>();
-
-        while (null != root || !S.isEmpty()) {
-            // add to value queue if root is not null and then go right
-            if (null != root) {
-                S.addFirst(root);
-                Q.addFirst(root);
-                root = root.right;
-            } else if (root == null) {
-                // find left of already visited elements
-                Node E = S.removeFirst();
-                root = E.left;
-            }
+        Deque<Node> out = new ArrayDeque<>();
+        S.addFirst(root);
+        while (!S.isEmpty()) {
+            Node element = S.removeFirst();
+            out.addFirst(element);
+            if(null != element.left) S.addFirst(element.left);
+            if(null != element.right) S.addFirst(element.right);
         }
-        // read all elements from value stack
-        while (!Q.isEmpty()) {
-            System.out.print(" " + Q.removeFirst().key);
+        // read all elements from out stack
+        while (!out.isEmpty()) {
+            System.out.print(" " + out.removeFirst().key);
         }
     }
 

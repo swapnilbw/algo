@@ -1,32 +1,38 @@
 package com.java.algo.string;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 public class AllPurmutationOfString {
     public static void main(String[] args) {
-        Set<String> all =printAllPermutations("abcd“/.,l7.;o7kl;..........o;k0p;......…".toCharArray(),0);
-        for(String each:all){
-            System.out.println("here"+each);
+       // printAllPermutations("abcd".toCharArray(),1);
+        printAllPermutations_recursion("abc".toCharArray());
+    }
+
+    private static void printAllPermutations(char[] A,int L) {
+        if (A.length == L)
+            return ;
+
+        char tmp = A[A.length-1];
+        A[A.length-1] = A[0];
+        A[0] = tmp;
+
+        for(int i =0;i < A.length;i++) {
+            printAllPermutations(A,i);
+        }
+        System.out.println(Arrays.toString(A));
+
+    }
+    private static void printAllPermutations_recursion(char[] A) {
+        for (int j = 0; j < A.length; j++) {
+            printAllPermutations_recursion(A);
         }
     }
 
-    private static Set<String> printAllPermutations(char[] A,int C) {
-        Set<String> combinations = new HashSet<>();
-
-
-        if(A.length-1==C) return combinations;
-
-
-
-        for (int j = 0; j < A.length; j++) {
-            if(C==j) continue;
-            swapChar(A,C,j);
-            combinations.add(Arrays.toString(A));
-            System.out.println(Arrays.toString(A));
-            printAllPermutations(A,C+1);
-        }
+    private static void printAllPermutations_old(String S) {
+        for (int j = 0; j < S.length(); j++) {
+            S = swapFirstAndLast(S, j);
+            for (int i = 0; i < S.length(); i++) {
+                System.out.println(S.substring(0, S.length() - i));
+            } }
         return combinations;
 
     }
@@ -41,7 +47,7 @@ public class AllPurmutationOfString {
 
     }
 
-    private static String swapFirstAndLast(String S,int j) {
+    private static String swapFirstAndLast(String S, int j) {
 
         char[] A = S.toCharArray();
         A[0] = S.charAt(j);

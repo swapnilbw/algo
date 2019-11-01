@@ -52,6 +52,7 @@ public class FindMax {
         private String name;
         private Long votes;
 
+
         Candidate(String name) {
             this.name = name;
             this.votes = 0L;

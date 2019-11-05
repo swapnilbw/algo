@@ -27,19 +27,19 @@ public class QuickSort {
         }
     }
 
-    private static int partition(int[] A, int start, int end) {
-        int mid = start - 1;
-        while (start <= end) {
-            if (A[start] <= A[end]) {
-                // swap mid and start
-                mid++;
-                int tmp = A[mid];
-                A[mid] = A[start];
-                A[start] = tmp;
+    private static int partition(int[] A, int j, int P) {
+        int i = j - 1;
+        while (j <= P) {
+            // swap elements less than pivot to left
+            if (A[j] <= A[P]) {
+                i++;
+                int tmp = A[i];
+                A[i] = A[j];
+                A[j] = tmp;
             }
-            start ++;
+            j ++;
         }
-        return mid;
+        return i;
     }
 
 
